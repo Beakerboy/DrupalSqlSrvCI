@@ -1,0 +1,15 @@
+language: php
+env:
+  - DRUPAL_VERSION=7.78
+php:
+  - '7.1'
+before_install:
+  - cd ..
+  - git clone https://github.com/Beakerboy/DrupalSqlSrvCI.git DrupalCI
+install:
+  - bash DrupalCI/src/travis/install.sh
+before_script:
+  - bash DrupalCI/src/travis/build.sh
+  - cd drupal-project
+script:
+  - php ./scripts/run-tests.sh --list --php `which php` --directory $TRAVIS_BUILD_DIR/tests
