@@ -57,7 +57,6 @@ build_script:
   - cmd: sqlcmd -d mydrupalsite -U sa -P Password12! -Q "CREATE ASSEMBLY Regex from 'C:\testlogs\RegEx.dll' WITH PERMISSION_SET = SAFE"
   - cmd: sqlcmd -d mydrupalsite -U sa -P Password12! -Q "CREATE FUNCTION dbo.REGEXP(@pattern NVARCHAR(100), @matchString NVARCHAR(100)) RETURNS bit EXTERNAL NAME Regex.RegExCompiled.RegExCompiledMatch"
   # Set up Drupal
-  - cmd: cd /d C:\inetpub\wwwroot
   # Add composer installed binaries to PATH
   - cmd: SET PATH=C:\inetpub\wwwroot\vendor\bin;%PATH%
   # Install other composer packages for production
@@ -83,6 +82,7 @@ build_script:
   - cmd: rm C:\inetpub\wwwroot\scripts\run-tests.sh
   - cmd: cp DrupalCI\src\settings.php C:\inetpub\wwwroot\sites\default\
   - cmd: mkdir .\build\logs
+  - cmd: cd wwwroot
   - cmd: drush si standard install_configure_form.update_status_module='array(FALSE,FALSE)' -y --db-url=sqlsrv://sa:Password12!@localhost/mydrupalsite --clean-url=0 --account-name=admin --account-pass=drupal
   - cmd: drush en -y simpletest
 before_test:
