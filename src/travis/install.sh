@@ -17,7 +17,17 @@ export PATH="/opt/mssql-tools/bin:$PATH"
 sqlcmd -P Password12! -S localhost -U SA -Q "CREATE DATABASE mydrupalsite COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8"
 # Install the pdo_sqlsrv extension
 sudo ACCEPT_EULA=Y apt-get -y install msodbcsql17 unixodbc-dev gcc g++ make autoconf libc-dev pkg-config
-pecl -d php_suffix=$TRAVIS_PHP_VERSION install sqlsrv pdo_sqlsrv
+case $TRAVIS_PHP_VERSION in
+  7.0)
+    pecl install sqlsrv-5.3.0 pdo_sqlsrv-5.3.0
+  ;;
+  7.1 | 7.2)
+    pecl install sqlsrv-5.6.1 pdo_sqlsrv-5.6.1
+  ;;
+  *)
+    pecl install sqlsrv pdo_sqlsrv
+  ;;
+esac
 # Install REGEX CLR
 wget https://github.com/Beakerboy/drupal-sqlsrv-regex/releases/download/1.0/RegEx.dll
 sudo mv RegEx.dll /var/opt/mssql/data/
