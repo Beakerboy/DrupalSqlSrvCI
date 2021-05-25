@@ -49,7 +49,7 @@ install:
   - cmd: git checkout tags/7.78
   - cmd: composer require drush/drush:8.4.8
   - cmd: cd ..
-  - cmd: powershell DruaplCI\src\appveyor\iis.ps1
+  - cmd: powershell DrupalCI\src\appveyor\iis.ps1
 build_script:
   # For some reason this cannot go in the install potion of the appveyor config
   - cmd: sqlcmd -U sa -P Password12! -Q "CREATE DATABASE mydrupalsite"
