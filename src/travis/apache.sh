@@ -6,7 +6,7 @@ sudo sed -i -e "s,www-data,travis,g" /etc/apache2/envvars
 sudo chown -R travis:travis /var/lib/apache2/fastcgi
 ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 # configure apache virtual hosts
-sudo cp -f $TRAVIS_BUILD_DIR/dev/travis/travis-ci-apache /etc/apache2/sites-available/000-default.conf
+sudo cp -f DrupalCI/travis/000-default.conf /etc/apache2/sites-available
 cd $TRAVIS_BUILD_DIR/../drupal-project
 sudo sed -e "s?%TRAVIS_WEB_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/000-default.conf
 sudo service apache2 restart
