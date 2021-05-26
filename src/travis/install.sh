@@ -52,7 +52,7 @@ cd drupal-project
 composer require drush/drush:8.4.8
 
 # if drupal version is specified, switch to the tagged branch.
-if ! [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION != "7.x" ]
+if ! [ -z $DRUPAL_VERSION ] || [ $DRUPAL_VERSION != "7.x" ]
 then
   git checkout tags/$DRUPAL_VERSION
 fi
