@@ -15,14 +15,19 @@ before_script:
 script:
   # test mssql version.
   # test php version.
+  - |
+    $CURRENT = `php --version`
+    test [[ $CURRENT == ${TRAVIS_PHP_VERSION}* ]]
   # test apache settings.
   # test drupal version
   - |
     if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ]
     then
-      test [ `git-branch --show-current` == "7.x" ]
+      $CURRENT = `git-branch --show-current`
+      test [ $CURRENT == "7.x" ]
     else
-      test [ `git describe --tags --exact-match` == $DRUPAL_VERSION ]
+      $CURRENT = `git describe --tags --exact-match`
+      test [ $CURRENT == $DRUPAL_VERSION ]
     fi
   # integration test, run simpletests.
   - php ./scripts/run-tests.sh --php `which php` "Database (SQL Server)"
