@@ -10,3 +10,4 @@ sudo cp -f DrupalCI/travis/000-default.conf /etc/apache2/sites-available
 cd $TRAVIS_BUILD_DIR/../drupal-project
 sudo sed -e "s?%TRAVIS_WEB_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/000-default.conf
 sudo service apache2 restart
+cd ..
