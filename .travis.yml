@@ -16,9 +16,7 @@ script:
   # test mssql version.
   # test php version.
   - php -m
-  - VERSION=`php --version`
-  - VERSION2="PHP $TRAVIS_PHP_VERSION"
-  - [[ $VERSION = $VERSION2* ]]
+  - php --version
   # test apache settings.
   - apache2ctl -M
   # test drupal version
