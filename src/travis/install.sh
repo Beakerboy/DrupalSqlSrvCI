@@ -2,7 +2,7 @@ sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubunt
 sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get update -qq
-sudo apt-get install -y -qq postfix
+sudo apt-get install -y -qq postfix apache2 libapache2-mod-fastcgi
 sudo ACCEPT_EULA=Y apt-get install -y -qq mssql-server mssql-tools unixodbc-dev
 phpenv config-rm xdebug.ini
 pecl channel-update pecl.php.net
