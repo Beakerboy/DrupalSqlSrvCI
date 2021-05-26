@@ -21,7 +21,7 @@ script:
   # test apache settings.
   # test drupal version
   - |
-    if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ]
+    if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ] ;
     then
       $CURRENT = `git-branch --show-current`
       test [ $CURRENT == "7.x" ]
