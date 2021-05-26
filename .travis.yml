@@ -17,6 +17,7 @@ script:
   # test php version.
   - test [[ `php --version` == ${TRAVIS_PHP_VERSION}* ]]
   # test apache settings.
+  - apache2ctl -M
   # test drupal version
   - |
     if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ] ;
