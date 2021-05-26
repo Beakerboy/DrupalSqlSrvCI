@@ -18,7 +18,8 @@ script:
   - php -m
   - |
     VERSION=`php --version`
-    test [[ "$VERSION" == ${TRAVIS_PHP_VERSION}* ]]
+    VERSION2="${TRAVIS_PHP_VERSION}*"
+    test [[ "$VERSION" == $VERSION2 ]]
   # test apache settings.
   - apache2ctl -M
   # test drupal version
