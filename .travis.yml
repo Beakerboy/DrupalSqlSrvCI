@@ -29,7 +29,7 @@ script:
       test [ "$VERSION" == "7.x" ]
     else
       VERSION= `git describe --tags --exact-match`
-      test [ "$VERSION" == $DRUPAL_VERSION ]
+      test [ "$VERSION" == "$DRUPAL_VERSION" ]
     fi
   # integration test, run simpletests.
   - php ./scripts/run-tests.sh --php `which php` "Database (SQL Server)"
