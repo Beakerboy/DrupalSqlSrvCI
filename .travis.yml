@@ -18,7 +18,7 @@ script:
   - php -m
   - |
     VERSION=`php --version`
-    test [[ $VERSION == ${TRAVIS_PHP_VERSION}* ]]
+    test [[ "$VERSION" == ${TRAVIS_PHP_VERSION}* ]]
   # test apache settings.
   - apache2ctl -M
   # test drupal version
@@ -26,10 +26,10 @@ script:
     if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ] ;
     then
       VERSION=`git-branch --show-current`
-      test [ $VERSION == "7.x" ]
+      test [ "$VERSION" == "7.x" ]
     else
       VERSION= `git describe --tags --exact-match`
-      test [ $VERSION == $DRUPAL_VERSION ]
+      test [ "$VERSION" == $DRUPAL_VERSION ]
     fi
   # integration test, run simpletests.
   - php ./scripts/run-tests.sh --php `which php` "Database (SQL Server)"
