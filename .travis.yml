@@ -16,9 +16,11 @@ script:
   # test mssql version.
   # test php version.
   - php -m
-  - VERSION=`php --version`;
-  - VERSION2="${TRAVIS_PHP_VERSION}*";
-  - test "$VERSION" == $VERSION2;
+  - VERSION=`php --version`
+  - VERSION2="${TRAVIS_PHP_VERSION}*"
+  - echo "$VERSION"
+  - echo "$VERSION2"
+  - test "$VERSION" == $VERSION2
   # test apache settings.
   - apache2ctl -M
   # test drupal version
