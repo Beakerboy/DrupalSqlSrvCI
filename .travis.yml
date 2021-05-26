@@ -16,6 +16,15 @@ script:
   # test mssql version.
   # test php version.
   # test apache settings.
-  # test Drupal is installed.
+  # test drupal version
+  - cd drupal-project
+  - |
+    if [ -z $DRUPAL_VERSION ] or [ $DRUPAL_VERSION == "7.x" ]
+    then
+      test [ `git-branch --show-current` == "7.x" ]
+    else
+      test [ `git describe --tags --exact-match` == $DRUPAL_VERSION ]
+    fi
+  - cd ..
   # integration test, run simpletests.
   - php ./scripts/run-tests.sh --php `which php` "Database (SQL Server)"
