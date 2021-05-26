@@ -13,4 +13,9 @@ before_script:
   - bash DrupalCI/src/travis/build.sh
   - cd drupal-project
 script:
+  # test mssql version.
+  # test php version.
+  # test apache settings.
+  # test Drupal is installed.
+  # integration test, run simpletests.
   - php ./scripts/run-tests.sh --php `which php` "Database (SQL Server)"
