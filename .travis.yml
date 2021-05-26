@@ -27,7 +27,7 @@ script:
       VERSION=`git-branch --show-current`
       test [ "$VERSION" == "7.x" ]
     else
-      VERSION= `git describe --tags --exact-match`
+      VERSION=`git describe --tags --exact-match`
       test [ "$VERSION" == "$DRUPAL_VERSION" ]
     fi
   # integration test, run simpletests.
