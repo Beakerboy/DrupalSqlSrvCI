@@ -15,6 +15,7 @@ before_script:
 script:
   # test mssql version.
   # test php version.
+  - php -m
   - |
     VERSION=`php --version`
     test [[ $VERSION == ${TRAVIS_PHP_VERSION}* ]]
