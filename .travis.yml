@@ -25,7 +25,7 @@ script:
   - apache2ctl -M
   # test drupal version
   - |
-    if [ -z "$DRUPAL_VERSION" ] or [ "$DRUPAL_VERSION" == "7.x" ]; then
+    if [ -z "$DRUPAL_VERSION" ] || [ "$DRUPAL_VERSION" == "7.x" ]; then
       VERSION=`git-branch --show-current`
       test "$VERSION" == "7.x"
     else
