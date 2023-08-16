@@ -19,7 +19,7 @@ jobs:
         name: Run on VM
   container:
     runs-on: ubuntu-latest
-    container: beakerboy/drupal-9.4.x-sqlsrv
+    container: beakerboy/drupal-9.4.x-sqlsrv:Drupal-9.4.x
     steps:
       - run: |
           ls -al
