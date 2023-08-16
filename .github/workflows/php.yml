@@ -22,5 +22,10 @@ jobs:
     container: beakerboy/drupal-9.4.x-sqlsrv:Drupal-9.4.x
     steps:
       - run: |
-          ls -al
+          sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2019.list)"
+          sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
+          wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postfix apache2 libapache2-mod-fastcgi
+          sudo ACCEPT_EULA=Y apt-get install -y -qq mssql-server mssql-tools unixodbc-dev
         name: Run in container
