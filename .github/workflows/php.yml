@@ -14,13 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo This job does not specify a container.
-          echo It runs directly on the virtual machine.
+          sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2019.list)"
+          sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
+          wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/myrepo.asc
+          # sudo apt-get update
+          sudo ACCEPT_EULA=Y apt install -y -qq mssql-server mssql-tools unixodbc-dev
+          export MSSQL_SA_PASSWORD=Password12!
+          export ACCEPT_EULA=Y
+          export MSSQL_PID=Evaluation
+          export SIMPLETEST_BASE_URL=http://127.0.0.1
+          sudo /opt/mssql/bin/mssql-conf setup
+          sleep 15
+          # add binary to path.
+          export PATH="/opt/mssql-tools/bin:$PATH"
+          sqlcmd -P Password12! -S localhost -U SA -Q "CREATE DATABASE mydrupalsite COLLATE LATIN1_GENERAL_100_CI_AS_SC_UTF8"
+          # Install the pdo_sqlsrv extension
+          # sudo ACCEPT_EULA=Y apt-get -y install msodbcsql17 unixodbc-dev gcc g++ make autoconf libc-dev pkg-config
         name: Run on VM
-  container:
-    runs-on: ubuntu-latest
-    container: beakerboy/drupal-9.4.x-sqlsrv:Drupal-9.4.x
-    steps:
-      - run: |
-          ls -al
-        name: Run in container
