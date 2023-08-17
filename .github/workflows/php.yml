@@ -17,7 +17,7 @@ jobs:
           sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2019.list)"
           sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/prod.list)"
           wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/myrepo.asc
-          sudo apt-get update
+          # sudo apt-get update
           sudo ACCEPT_EULA=Y apt-get install -y -qq mssql-server mssql-tools unixodbc-dev
           export MSSQL_SA_PASSWORD=Password12!
           export ACCEPT_EULA=Y
